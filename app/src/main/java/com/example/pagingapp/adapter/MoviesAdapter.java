@@ -53,7 +53,7 @@ public class MoviesAdapter extends PagingDataAdapter<Movie,MoviesAdapter.MovieVi
         }
     }
 
-    public class MovieViewHolder extends RecyclerView.ViewHolder {
+    public static class MovieViewHolder extends RecyclerView.ViewHolder {
         MovieItemBinding movieItemBinding;
         public MovieViewHolder(@NonNull MovieItemBinding movieItemBinding ) {
             super(movieItemBinding.getRoot());

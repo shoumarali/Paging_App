@@ -1,5 +1,8 @@
 package com.example.pagingapp.api;
 
+import static com.example.pagingapp.util.Utils.API_KEY;
+import static com.example.pagingapp.util.Utils.BASE_URL;
+
 import com.example.pagingapp.model.MovieResult;
 import com.example.pagingapp.util.Utils;
 
@@ -17,30 +20,27 @@ public class ApiClient {
 
     static ApiInterface apiInterface;
     public static ApiInterface getApiInterface(){
+
         if(apiInterface == null){
             OkHttpClient.Builder client = new OkHttpClient.Builder();
             client.addInterceptor(chain -> {
-                Request original = chain.request();
-                HttpUrl originalHttpUrl = original.url();
-                HttpUrl url = originalHttpUrl
-                        .newBuilder()
-                        .addQueryParameter("api_key", Utils.API_KEY)
-                        .build();
-
-                Request.Builder requestBuilder = original.newBuilder().url(url);
-                Request request = requestBuilder.build();
+                HttpUrl url = chain.request()
+                       .url()
+                       .newBuilder()
+                       .addQueryParameter("api_key",API_KEY)
+                       .build();
+                Request request = chain.request().newBuilder().url(url).build();
                 return chain.proceed(request);
             });
-            Retrofit retrofit = new Retrofit
-                    .Builder()
-                    .baseUrl(Utils.BASE_URL)
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl(BASE_URL)
                     .client(client.build())
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
                     .build();
-
             apiInterface = retrofit.create(ApiInterface.class);
         }
+
         return apiInterface;
     }
 

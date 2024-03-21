@@ -40,6 +40,6 @@ public class MoviePagingSource extends RxPagingSource<Integer, Movie> {
         }
     }
     private LoadResult<Integer, Movie> toLoadResult(List<Movie> movies, int page){
-        return new LoadResult.Page(movies, page == 1? null: page -1, page +1);
+        return new LoadResult.Page(movies,page ==1 ? null : page -1 , page+1);
     }
 }

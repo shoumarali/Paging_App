@@ -24,7 +24,7 @@ public class MovieViewModel extends ViewModel {
 
     private void init() {
         MoviePagingSource moviePagingSource = new MoviePagingSource();
-        Pager<Integer,Movie> pager = new Pager<>(
+        Pager<Integer,Movie> pager = new Pager(
                 new PagingConfig(
                         20,
                         20,
