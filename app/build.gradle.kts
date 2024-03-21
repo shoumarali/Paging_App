@@ -70,7 +70,10 @@ dependencies {
     val arch_version = "2.2.0"
     // ViewModel
     implementation(libs.lifecycle.viewmodel.ktx)
-
+    implementation(libs.androidx.lifecycle.lifecycle.viewmodel)
+    implementation(libs.androidx.lifecycle.extensions)
     // LiveData
     implementation(libs.lifecycle.livedata.ktx)
+
+
 }

@@ -37,10 +37,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(R.layout.activity_main);
+        setContentView(activityMainBinding.getRoot());
 
-        if (Utils.API_KEY == null || Utils.API_KEY.isEmpty()) {
-            Toast.makeText(this, "Error in Api key", Toast.LENGTH_SHORT).show();
+        if (Utils.API_KEY == null || Utils.API_KEY.isEmpty()){
+            Toast.makeText(this, "Error in API Key", Toast.LENGTH_SHORT).show();
         }
 
         moviesAdapter = new MoviesAdapter(new MovieComparator(), requestManager);
